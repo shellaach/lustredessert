@@ -225,7 +225,7 @@
         font-size: 1.2rem;
       }
 
-      /* Menu Section - DIPERBAIKI */
+      /* Menu Section */
       .menu-tabs {
         display: flex;
         justify-content: center;
@@ -249,73 +249,6 @@
         background: linear-gradient(45deg, #ffece3, #e19d45);
         color: #4b2f23;
         border-color: #e8b779;
-      }
-
-      /* Menu Dropdown Styles - DITAMBAHKAN */
-      .menu-dropdown {
-        display: none;
-        position: relative;
-        margin-bottom: 2rem;
-      }
-
-      .dropdown-toggle {
-        background: white;
-        border: 2px solid #e8b779;
-        padding: 0.8rem 1.5rem;
-        border-radius: 30px;
-        cursor: pointer;
-        font-weight: 500;
-        color: #4b2f23;
-        display: flex;
-        justify-content: space-between;
-        align-items: center;
-        width: 100%;
-        max-width: 300px;
-        margin: 0 auto;
-      }
-
-      .dropdown-toggle i {
-        transition: transform 0.3s;
-      }
-
-      .dropdown-toggle.active i {
-        transform: rotate(180deg);
-      }
-
-      .dropdown-menu {
-        display: none;
-        position: absolute;
-        top: 100%;
-        left: 50%;
-        transform: translateX(-50%);
-        background: white;
-        border: 2px solid #e8b779;
-        border-radius: 15px;
-        padding: 0.5rem;
-        width: 100%;
-        max-width: 300px;
-        z-index: 10;
-        box-shadow: 0 5px 15px rgba(75, 47, 35, 0.1);
-      }
-
-      .dropdown-menu.show {
-        display: block;
-      }
-
-      .dropdown-item {
-        padding: 0.8rem 1rem;
-        border-radius: 20px;
-        cursor: pointer;
-        font-weight: 500;
-        color: #4b2f23;
-        transition: all 0.3s;
-        text-align: center;
-      }
-
-      .dropdown-item:hover,
-      .dropdown-item.active {
-        background: linear-gradient(45deg, #ffece3, #e19d45);
-        color: #4b2f23;
       }
 
       .menu-grid {
@@ -568,15 +501,6 @@
         .hero p {
           font-size: 1.1rem;
         }
-
-        /* Menu Tabs Responsive - DIPERBAIKI */
-        .menu-tabs {
-          display: none;
-        }
-
-        .menu-dropdown {
-          display: block;
-        }
       }
     </style>
     <link
@@ -714,33 +638,16 @@
       </div>
     </section>
 
-    <!-- Menu Section - DIPERBAIKI -->
+    <!-- Menu Section -->
     <section id="menu">
       <div class="container">
         <h2 class="section-title">Menu Dessert</h2>
-
-        <!-- Menu Tabs untuk Desktop -->
         <div class="menu-tabs">
           <button class="tab-btn active" data-category="all">Semua</button>
           <button class="tab-btn" data-category="dessert">Dessert</button>
           <button class="tab-btn" data-category="pastry">Pastry</button>
           <button class="tab-btn" data-category="icecream">Ice Cream</button>
           <button class="tab-btn" data-category="bundle">Bundling</button>
-        </div>
-
-        <!-- Menu Dropdown untuk Mobile -->
-        <div class="menu-dropdown">
-          <button class="dropdown-toggle" id="dropdownToggle">
-            <span>Semua</span>
-            <i class="fas fa-chevron-down"></i>
-          </button>
-          <div class="dropdown-menu" id="dropdownMenu">
-            <div class="dropdown-item active" data-category="all">Semua</div>
-            <div class="dropdown-item" data-category="dessert">Dessert</div>
-            <div class="dropdown-item" data-category="pastry">Pastry</div>
-            <div class="dropdown-item" data-category="icecream">Ice Cream</div>
-            <div class="dropdown-item" data-category="bundle">Bundling</div>
-          </div>
         </div>
 
         <div class="menu-grid">
@@ -955,52 +862,6 @@
       const tabBtns = document.querySelectorAll(".tab-btn");
       const menuItems = document.querySelectorAll(".menu-item");
 
-      // Menu Dropdown Functionality - DITAMBAHKAN
-      const dropdownToggle = document.getElementById("dropdownToggle");
-      const dropdownMenu = document.getElementById("dropdownMenu");
-      const dropdownItems = document.querySelectorAll(".dropdown-item");
-      const dropdownToggleText = dropdownToggle.querySelector("span");
-
-      // Toggle dropdown menu
-      dropdownToggle.addEventListener("click", function () {
-        dropdownMenu.classList.toggle("show");
-        dropdownToggle.classList.toggle("active");
-      });
-
-      // Close dropdown when clicking outside
-      document.addEventListener("click", function (event) {
-        if (
-          !dropdownToggle.contains(event.target) &&
-          !dropdownMenu.contains(event.target)
-        ) {
-          dropdownMenu.classList.remove("show");
-          dropdownToggle.classList.remove("active");
-        }
-      });
-
-      // Handle dropdown item selection
-      dropdownItems.forEach((item) => {
-        item.addEventListener("click", function () {
-          const category = this.getAttribute("data-category");
-
-          // Update dropdown toggle text
-          dropdownToggleText.textContent = this.textContent;
-
-          // Remove active class from all dropdown items
-          dropdownItems.forEach((i) => i.classList.remove("active"));
-          // Add active class to clicked item
-          this.classList.add("active");
-
-          // Close dropdown
-          dropdownMenu.classList.remove("show");
-          dropdownToggle.classList.remove("active");
-
-          // Filter menu items
-          filterMenuItems(category);
-        });
-      });
-
-      // Handle tab button selection for desktop
       tabBtns.forEach((btn) => {
         btn.addEventListener("click", function () {
           // Remove active class from all buttons
@@ -1009,23 +870,20 @@
           this.classList.add("active");
 
           const category = this.getAttribute("data-category");
-          filterMenuItems(category);
+
+          // Show/hide menu items based on category
+          menuItems.forEach((item) => {
+            if (
+              category === "all" ||
+              item.getAttribute("data-category") === category
+            ) {
+              item.style.display = "block";
+            } else {
+              item.style.display = "none";
+            }
+          });
         });
       });
-
-      // Function to filter menu items
-      function filterMenuItems(category) {
-        menuItems.forEach((item) => {
-          if (
-            category === "all" ||
-            item.getAttribute("data-category") === category
-          ) {
-            item.style.display = "block";
-          } else {
-            item.style.display = "none";
-          }
-        });
-      }
 
       // Format tanggal Indonesia
       function formatIndonesianDate(date) {
@@ -1112,7 +970,7 @@
           document
             .getElementById("pickupDate")
             .setAttribute("min", new Date().toISOString().split("T")[0]);
-        });
+        }); //sblm filter menu
     </script>
   </body>
 </html>
