@@ -194,7 +194,7 @@
         box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
       }
 
-      .about-image img {
+      .about-image video {
         width: 100%;
         height: auto;
         display: block;
@@ -655,13 +655,23 @@
       </div>
     </section>
 
-    <!-- About Product Section -->
+    <!-- About Product Section - VIDEO DIPERBAIKI -->
     <section id="about" style="background-color: #f4ccaa">
       <div class="container">
         <h2 class="section-title">Tentang Lustre' Dessert</h2>
         <div class="about-content">
           <div class="about-image">
-            <img src="images/banoffe.png" alt="Dessert Premium" />
+            <!-- PERBAIKAN: Tag video yang benar -->
+            <video
+              controls
+              autoplay
+              muted
+              loop
+              style="width: 100%; height: auto; border-radius: 15px"
+            >
+              <source src="images/dessertvid.mp4" type="video/mp4" />
+              Browser Anda tidak mendukung pemutaran video.
+            </video>
           </div>
           <div class="about-text">
             <h2>Lustre' Dessert</h2>
@@ -747,7 +757,7 @@
           <!-- Menu Item 1 -->
           <div class="menu-item" data-category="dessert">
             <div class="menu-image">
-              <img src="images/banoffec.png" alt="Chocolate Banoffee Dessert" />
+              <img src="images/dessert.jpg" alt="Chocolate Banoffee Dessert" />
             </div>
             <div class="menu-details">
               <h3>Chocolate Banoffee Dessert</h3>
@@ -755,14 +765,14 @@
                 Perpaduan pisang manis, krim lembut, dan cokelat yang creamy dan
                 bikin nagih.
               </p>
-              <div class="price">Rp 45.000</div>
+              <div class="price">Rp 20.000</div>
             </div>
           </div>
 
           <!-- Menu Item 2 -->
           <div class="menu-item" data-category="dessert">
             <div class="menu-image">
-              <img src="images/banoffek.png" alt="Cheese Banoffee Dessert" />
+              <img src="images/dessert.jpg" alt="Cheese Banoffee Dessert" />
             </div>
             <div class="menu-details">
               <h3>Cheese Banoffee Dessert</h3>
@@ -770,7 +780,7 @@
                 Perpaduan pisang manis, krim lembut, dan keju yang gurih dan
                 bikin nagih.
               </p>
-              <div class="price">Rp 45.000</div>
+              <div class="price">Rp 20.000</div>
             </div>
           </div>
         </div>
@@ -804,8 +814,10 @@
                 <i class="fab fa-instagram"></i>
                 <div>
                   <h4>Instagram</h4>
-                  <a href="https://instagram.com/lustredessert" target="_blank"
-                    >@lustredessert</a
+                  <a
+                    href="https://www.instagram.com/lustre.dessert/"
+                    target="_blank"
+                    >@lustre.dessert</a
                   >
                 </div>
               </div>
@@ -824,7 +836,7 @@
                 <i class="fas fa-phone"></i>
                 <div>
                   <h4>Telepon</h4>
-                  <a href="tel:+62211234567">(021) 123-4567</a>
+                  <a href="tel:+6281916276259">(62) 819-1627-6259</a>
                 </div>
               </div>
             </div>
